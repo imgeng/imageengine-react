@@ -1,0 +1,31 @@
+{
+  "name": "imageengine-react",
+  "version": "0.0.0",
+  "description": "React components for seamless integration with ImageEngine",
+  "main": "src/index.tsx",
+  "scripts": {
+    "build": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "react": "^17.0.2"
+  },
+  "devDependencies": {
+    "@types/react": "^17.0.3",
+    "typescript": "^4.2.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/imgeng/imageengine-react.git"
+  },
+  "keywords": [
+    "react",
+    "image cdn"
+  ],
+  "author": "Pavel Yermolin | oatto.paul@gmail.com | https://github.com/Powell-v2",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/imgeng/imageengine-react/issues"
+  },
+  "homepage": "https://github.com/imgeng/imageengine-react#readme"
+}
