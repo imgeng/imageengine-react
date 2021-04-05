@@ -21,7 +21,7 @@
     /* Specify ECMAScript target version: 'ES3' (default), 'ES5', 'ES2015', 'ES2016', 'ES2017', 'ES2018', 'ES2019', 'ES2020', or 'ESNEXT'. */
     "target": "es5",
     /* Specify library files to be included in the compilation. */
-    "lib": ["es7", "dom"]
+    "lib": ["es2017", "dom"]
     /* Basic Options */
     // "incremental": true,                         /* Enable incremental compilation */
     // "allowJs": true,                             /* Allow javascript files to be compiled. */
