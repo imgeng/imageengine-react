@@ -1,3 +1,2 @@
-export default function Image() {
-  return <img src="" alt="" />;
-}
+export { ImageEngineProvider } from "./context"
+export { Image } from "./components/Image"
