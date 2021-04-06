@@ -65,6 +65,10 @@ export function Image(props: TProps): JSX.Element {
   const { rootUrl } = useImageEngineContext()
   const srcWithRootUrl = `${rootUrl}${src}`
 
+  if (!src) {
+    throw new Error(`Please ensure that the image component has an 'src' prop.`)
+  }
+
   const [imageExtension] = src.split(".").slice(-1)
 
   if (!ALLOWED_INPUT_EXTENSIONS.includes(imageExtension)) {

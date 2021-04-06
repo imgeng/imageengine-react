@@ -24,7 +24,7 @@ function useImageEngineContext() {
 
   if (!ctx) {
     throw new Error(
-      "useImageEngineContext must be used within ImageEngineProvider"
+      "Please ensure that you've included an ImageEngineProvider somewhere above your image components with a 'rootUrl' prop defined."
     )
   }
 
