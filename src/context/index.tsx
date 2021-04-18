@@ -19,12 +19,12 @@ function ImageEngineProvider({ children, rootUrl }: TProps): JSX.Element {
   )
 }
 
-function useImageEngineContext() {
+function useImageEngineContext(): { rootUrl: string } {
   const ctx = useContext(ImageEngineContext)
 
-  if (!ctx) {
+  if (ctx.rootUrl === "") {
     throw new Error(
-      "Please ensure that you've included an ImageEngineProvider somewhere above your image components with a 'rootUrl' prop defined."
+      "Please ensure that you've included ImageEngineProvider with a 'rootUrl' prop defined somewhere above Image components."
     )
   }
 

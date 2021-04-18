@@ -1,6 +1,19 @@
 import { useImageEngineContext } from "../context"
 import { constructUrl } from "../utils"
 
+const ALLOWED_INPUT_EXTENSIONS = [
+  "png",
+  "gif",
+  "jpg",
+  "bmp",
+  "webp",
+  "jpeg2000",
+  "svg",
+  "tif",
+]
+
+type TSrcSet = Array<[string, string, TDirectives?]>
+
 export type TDirectives = {
   // Define desired width.
   width?: number
@@ -43,32 +56,42 @@ export type TDirectives = {
   keepMeta?: true
 }
 
-type TProps = Omit<JSX.IntrinsicElements["img"], "src"> & {
-  src: string
-} & {
-  directives?: TDirectives
+function generateSrcSetString(srcSet: TSrcSet, rootUrl: string) {
+  return srcSet.reduce((result, [src, width, directives]) => {
+    // Extract width directive and always apply it to the image as
+    // its size has to match provided width descriptor.
+    const widthDirective = {
+      width: Number(width.replace("w", "")),
+    }
+    const srcWithRootUrlAndDirectives = constructUrl(
+      rootUrl + src,
+      directives
+        ? {
+            ...directives,
+            ...widthDirective,
+          }
+        : widthDirective
+    )
+    const entry = `${srcWithRootUrlAndDirectives} ${width}`
+    return (result += entry + ",\n")
+  }, "")
 }
 
-const ALLOWED_INPUT_EXTENSIONS = [
-  "png",
-  "gif",
-  "jpg",
-  "bmp",
-  "webp",
-  "jpeg2000",
-  "svg",
-  "tif",
-]
+type TProps = Omit<JSX.IntrinsicElements["img"], "src" | "srcSet"> & {
+  src: string
+  directives?: TDirectives
+  srcSet?: TSrcSet
+}
 
 export function Image(props: TProps): JSX.Element {
-  const { src, directives, ...other } = props
-  const { rootUrl } = useImageEngineContext()
-  const srcWithRootUrl = `${rootUrl}${src}`
+  const { src, srcSet, directives, ...other } = props
 
   if (!src) {
     throw new Error(`Please ensure that the image component has an 'src' prop.`)
   }
 
+  const { rootUrl } = useImageEngineContext()
+  const srcWithRootUrl = rootUrl + src
   const [imageExtension] = src.split(".").slice(-1)
 
   if (!ALLOWED_INPUT_EXTENSIONS.includes(imageExtension)) {
@@ -83,6 +106,7 @@ export function Image(props: TProps): JSX.Element {
       src={
         directives ? constructUrl(srcWithRootUrl, directives) : srcWithRootUrl
       }
+      srcSet={srcSet && generateSrcSetString(srcSet, rootUrl)}
       {...other}
     />
   )
