@@ -1,4 +1,4 @@
-# Dedicated React components for ImageEngine integration 
+# React components for ImageEngine integration
 
 Hassle-free way to deliver optimized responsive images in your React applications.
 
@@ -10,12 +10,12 @@ The bundle includes three major components:
 * `<Picture>`
 * `<Source>`
 
-The only prerequisite to start using them is placing `ImageEngineProvider` somewhere above in the tree. The provider requires one prop to be defined: `rootUrl`, which is supposed to contain your [image origin](https://docs.imageengine.io/docs/implementation/origin):
+The only prerequisite to start using them is placing `ImageEngineProvider` somewhere above in the tree. The provider requires one prop to be defined: `rootUrl`, which should be set to your [ImageEngine Delivery Address](https://docs.imageengine.io/docs/implementation/domain-name):
 
 ```jsx
 import { ImageEngineProvider } from "@imageengine/react"
 
-<ImageEngineProvider rootUrl="https//blazing.fast.pics.imgeng.in">
+<ImageEngineProvider rootUrl="https://blazing-fast-pics.cdn.imgeng.in">
   <ShoppingCart />
 </ImageEngineProvider>
 ```
@@ -35,16 +35,17 @@ import { Image } from "@imageengine/react"
 </section>
 ```
 
-## Component reference
+## Component properties reference
 
 ### Image
+
+`src` - Relative path to the image:
 ```
 src: string
 ```
 
-Relative path to the image.
-
-```
+`directives` - ImageEngine directives:
+```js
 directives?: {
   // Define desired width.
   width?: number
@@ -66,10 +67,11 @@ directives?: {
     | "svg"
     | "mp4"
     | "jxr"
+    | "avif"
   // Define desired fit method.
   fitMethod?: "stretch" | "box" | "letterbox" | "cropbox"
   // Don't apply any optimizations to the origin image.
-  noOptimization?: true
+  noOptimization?: false
   // Adjust sharpness.
   // Possible range: 0-100.
   sharpness?: number
@@ -82,16 +84,15 @@ directives?: {
   // Crop the image [width, height, left, top].
   crop?: number[]
   // Convert the image into a data url.
-  inline?: true
+  inline?: false
   // Keep EXIF data.
-  keepMeta?: true
+  keepMeta?: false
 }
 ```
 
-Custom optimization instructions.
+`srcSet` - List of image variations for the image source set:
 
-
-```
+```js
 srcSet?: [
   // Relative path to the image.
   string,
@@ -101,12 +102,13 @@ srcSet?: [
   TDirectives?
 ]
 ```
-
-List of image variations.
 
 
 ### Source
-```
+
+List of image variations:
+
+```js
 srcSet?: [
   // Relative path to the image.
   string,
@@ -116,5 +118,3 @@ srcSet?: [
   TDirectives?
 ]
 ```
-
-List of image variations.
