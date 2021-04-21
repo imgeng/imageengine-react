@@ -1,5 +1,5 @@
 import { useImageEngineContext } from "../context"
-import { constructUrl } from "../utils"
+import { constructUrl, generateSrcSetString } from "../utils"
 
 const ALLOWED_INPUT_EXTENSIONS = [
   "png",
@@ -12,7 +12,7 @@ const ALLOWED_INPUT_EXTENSIONS = [
   "tif",
 ]
 
-type TSrcSet = Array<[string, string, TDirectives?]>
+export type TSrcSet = Array<[string, string, TDirectives?]>
 
 export type TDirectives = {
   // Define desired width.
@@ -54,27 +54,6 @@ export type TDirectives = {
   inline?: true
   // Keep EXIF data.
   keepMeta?: true
-}
-
-function generateSrcSetString(srcSet: TSrcSet, rootUrl: string) {
-  return srcSet.reduce((result, [src, width, directives]) => {
-    // Extract width directive and always apply it to the image as
-    // its size has to match provided width descriptor.
-    const widthDirective = {
-      width: Number(width.replace("w", "")),
-    }
-    const srcWithRootUrlAndDirectives = constructUrl(
-      rootUrl + src,
-      directives
-        ? {
-            ...directives,
-            ...widthDirective,
-          }
-        : widthDirective
-    )
-    const entry = `${srcWithRootUrlAndDirectives} ${width}`
-    return (result += entry + ",\n")
-  }, "")
 }
 
 type TProps = Omit<JSX.IntrinsicElements["img"], "src" | "srcSet"> & {

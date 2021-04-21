@@ -1,4 +1,4 @@
-import { TDirectives } from "../components/Image"
+import { TDirectives, TSrcSet } from "../components/Image"
 
 const DIRECTIVE_MAPPING: { [key: string]: string } = {
   width: "w",
@@ -29,4 +29,25 @@ export function constructUrl(src: string, directives: TDirectives): string {
   }, "")
 
   return `${src}?imgeng=${params}`
+}
+
+export function generateSrcSetString(srcSet: TSrcSet, rootUrl: string): string {
+  return srcSet.reduce((result, [src, width, directives]) => {
+    // Extract width directive and always apply it to the image as
+    // its size has to match provided width descriptor.
+    const widthDirective = {
+      width: Number(width.replace("w", "")),
+    }
+    const srcWithRootUrlAndDirectives = constructUrl(
+      rootUrl + src,
+      directives
+        ? {
+            ...directives,
+            ...widthDirective,
+          }
+        : widthDirective
+    )
+    const entry = `${srcWithRootUrlAndDirectives} ${width}`
+    return (result += entry + ",\n")
+  }, "")
 }
