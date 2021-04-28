@@ -1,4 +1,4 @@
-# Dedicated React components for ImageEngine integration 
+# React components for ImageEngine integration
 
 Hassle-free way to deliver optimized responsive images in your React applications.
 
@@ -10,41 +10,51 @@ The bundle includes three major components:
 * `<Picture>`
 * `<Source>`
 
-The only prerequisite to start using them is placing `ImageEngineProvider` somewhere above in the tree. The provider requires one prop to be defined: `rootUrl`, which is supposed to contain your [image origin](https://docs.imageengine.io/docs/implementation/origin):
+The only prerequisite to start using them is placing `ImageEngineProvider` somewhere above in the DOM tree. The provider requires one prop to be defined: `deliveryAddress`, which should be set to your [ImageEngine Delivery Address](https://docs.imageengine.io/docs/implementation/origin):
 
 ```jsx
 import { ImageEngineProvider } from "@imageengine/react"
 
-<ImageEngineProvider rootUrl="https//blazing.fast.pics.imgeng.in">
-  <ShoppingCart />
-</ImageEngineProvider>
+function App () {
+  return (
+    <ImageEngineProvider deliveryAddress="https://blazing-fast-pics.cdn.imgeng.in">
+      <ShoppingCart />
+      ...
+    </ImageEngineProvider>
+  )
+}
+
 ```
 
 ```jsx
-// ShoppingCart
 import { Image } from "@imageengine/react"
 
-<section>
-  <Image
-    src="pick-ups/custom/unstoppable.jpg"
-    srcSet={...}
-    sizes={...}
-    directives={...}
-    {...otherProps}
-  />
-</section>
+function ShoppingCart () {
+  return (
+    <section>
+      <Image
+        src="pick-ups/custom/unstoppable.jpg"
+        srcSet={...}
+        sizes={...}
+        directives={...}
+        {...otherProps}
+      />
+    </section>
+    ...
+  )
+}
 ```
 
-## Component reference
+## Component props reference
 
 ### Image
-```
+`src` - Relative path to the image:
+```ts
 src: string
 ```
 
-Relative path to the image.
-
-```
+`directives` - ImageEngine directives:
+```ts
 directives?: {
   // Define desired width.
   width?: number
@@ -88,33 +98,27 @@ directives?: {
 }
 ```
 
-Custom optimization instructions.
-
-
-```
-srcSet?: [
+`srcSet` - List of image variations for the image source set:
+```ts
+srcSet?: [{
   // Relative path to the image.
-  string,
+  src: string
   // Width descriptor.
-  string,
+  width: string
   // Custom optimization instructions.
-  TDirectives?
-]
+  directives?: TDirectives
+}]
 ```
-
-List of image variations.
 
 
 ### Source
-```
-srcSet?: [
+`srcSet` - List of image variations for the image source set:
+```ts
+srcSet?: [{
   // Relative path to the image.
-  string,
+  src: string
   // Width descriptor.
-  string,
-  // Custom optimization instructions.
-  TDirectives?
-]
+  width: string
+  directives?: TDirectives
+}]
 ```
-
-List of image variations.

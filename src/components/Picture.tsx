@@ -1,13 +1,10 @@
-import { Children, ReactNode, ComponentType } from "react"
+import { Children, ReactElement } from "react"
 
-import { Image } from './Image'
-import { Source } from "./Source"
+import { Image, TProps as TImageProps } from "./Image"
+import { Source, TProps as TSourceProps } from "./Source"
 
 type TProps = Omit<JSX.IntrinsicElements["source"], "children"> & {
-  children: [
-    ...Array<ComponentType<typeof Source>>,
-    ComponentType<typeof Image>
-  ]
+  children: [...Array<ReactElement<TSourceProps>>, ReactElement<TImageProps>]
 }
 export function Picture(props: TProps): JSX.Element {
   const imgChild = Children.toArray(props.children).find(

@@ -12,7 +12,13 @@ const ALLOWED_INPUT_EXTENSIONS = [
   "tif",
 ]
 
-export type TSrcSet = Array<[string, string, TDirectives?]>
+export type TSrcSet = Array<{
+  // Relative path to the image.
+  src: string
+  // Width descriptor.
+  width: string
+  directives?: TDirectives
+}>
 
 export type TDirectives = {
   // Define desired width.
@@ -35,6 +41,7 @@ export type TDirectives = {
     | "svg"
     | "mp4"
     | "jxr"
+    | "avif"
   // Define desired fit method.
   fitMethod?: "stretch" | "box" | "letterbox" | "cropbox"
   // Don't apply any optimizations to the origin image.
@@ -56,7 +63,7 @@ export type TDirectives = {
   keepMeta?: true
 }
 
-type TProps = Omit<JSX.IntrinsicElements["img"], "src" | "srcSet"> & {
+export type TProps = Omit<JSX.IntrinsicElements["img"], "src" | "srcSet"> & {
   src: string
   directives?: TDirectives
   srcSet?: TSrcSet
@@ -69,8 +76,8 @@ export function Image(props: TProps): JSX.Element {
     throw new Error(`Please ensure that the image component has an 'src' prop.`)
   }
 
-  const { rootUrl } = useImageEngineContext()
-  const srcWithRootUrl = rootUrl + src
+  const { deliveryAddress } = useImageEngineContext()
+  const imageUrl = deliveryAddress + src
   const [imageExtension] = src.split(".").slice(-1)
 
   if (!ALLOWED_INPUT_EXTENSIONS.includes(imageExtension)) {
@@ -83,9 +90,9 @@ export function Image(props: TProps): JSX.Element {
   return (
     <img
       src={
-        directives ? constructUrl(srcWithRootUrl, directives) : srcWithRootUrl
+        directives ? constructUrl(imageUrl, directives) : imageUrl
       }
-      srcSet={srcSet && generateSrcSetString(srcSet, rootUrl)}
+      srcSet={srcSet && generateSrcSetString(srcSet, deliveryAddress)}
       {...other}
     />
   )

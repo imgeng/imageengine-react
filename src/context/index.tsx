@@ -1,17 +1,17 @@
 import { createContext, useContext, ReactNode } from "react"
 
-const ImageEngineContext = createContext({ rootUrl: "" })
+const ImageEngineContext = createContext({ deliveryAddress: "" })
 
 type TProps = {
   children: ReactNode
-  rootUrl: string
+  deliveryAddress: string
 }
 
-function ImageEngineProvider({ children, rootUrl }: TProps): JSX.Element {
+function ImageEngineProvider({ children, deliveryAddress }: TProps): JSX.Element {
   return (
     <ImageEngineContext.Provider
       value={{
-        rootUrl,
+        deliveryAddress: deliveryAddress.endsWith('/') ? deliveryAddress.slice(0, -1) : deliveryAddress
       }}
     >
       {children}
@@ -19,12 +19,12 @@ function ImageEngineProvider({ children, rootUrl }: TProps): JSX.Element {
   )
 }
 
-function useImageEngineContext(): { rootUrl: string } {
+function useImageEngineContext(): { deliveryAddress: string } {
   const ctx = useContext(ImageEngineContext)
 
-  if (ctx.rootUrl === "") {
+  if (ctx.deliveryAddress === "") {
     throw new Error(
-      "Please ensure that you've included ImageEngineProvider with a 'rootUrl' prop defined somewhere above Image components."
+      "Please ensure that you've defined <ImageEngineProvider deliveryAddress='...'> somewhere above <Image> components in the DOM tree."
     )
   }
 

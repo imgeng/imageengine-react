@@ -9,6 +9,10 @@
     "jsx": "react-jsx",
     /* Specify module code generation: 'none', 'commonjs', 'amd', 'system', 'umd', 'es2015', 'es2020', or 'ESNext'. */
     "module": "commonjs",
+    /* Generates corresponding '.d.ts' file. */
+    "declaration": true,
+    /* Generates corresponding '.map' file. */
+    "sourceMap": true,
     /* Redirect output structure to the directory. */
     "outDir": "build",
     /* Specify the root directory of input files. Use to control the output directory structure with --outDir. */
@@ -22,13 +26,12 @@
     "target": "es5",
     /* Specify library files to be included in the compilation. */
     "lib": ["es2017", "dom"]
+    
     /* Basic Options */
     // "incremental": true,                         /* Enable incremental compilation */
     // "allowJs": true,                             /* Allow javascript files to be compiled. */
     // "checkJs": true,                             /* Report errors in .js files. */
-    // "declaration": true,                         /* Generates corresponding '.d.ts' file. */
     // "declarationMap": true,                      /* Generates a sourcemap for each corresponding '.d.ts' file. */
-    // "sourceMap": true,                           /* Generates corresponding '.map' file. */
     // "outFile": "./",                             /* Concatenate and emit output to single file. */
     // "composite": true,                           /* Enable project compilation */
     // "tsBuildInfoFile": "./",                     /* Specify file to store incremental compilation information */

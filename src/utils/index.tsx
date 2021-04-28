@@ -31,15 +31,15 @@ export function constructUrl(src: string, directives: TDirectives): string {
   return `${src}?imgeng=${params}`
 }
 
-export function generateSrcSetString(srcSet: TSrcSet, rootUrl: string): string {
-  return srcSet.reduce((result, [src, width, directives]) => {
+export function generateSrcSetString(srcSet: TSrcSet, deliveryAddress: string): string {
+  return srcSet.reduce((result, { src, width, directives }) => {
     // Extract width directive and always apply it to the image as
     // its size has to match provided width descriptor.
     const widthDirective = {
       width: Number(width.replace("w", "")),
     }
-    const srcWithRootUrlAndDirectives = constructUrl(
-      rootUrl + src,
+    const fullImageUrl = constructUrl(
+      deliveryAddress + src,
       directives
         ? {
             ...directives,
@@ -47,7 +47,7 @@ export function generateSrcSetString(srcSet: TSrcSet, rootUrl: string): string {
           }
         : widthDirective
     )
-    const entry = `${srcWithRootUrlAndDirectives} ${width}`
-    return (result += entry + ",\n")
+    const entry = `${fullImageUrl} ${width},\n`
+    return result += entry
   }, "")
 }
