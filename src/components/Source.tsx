@@ -7,11 +7,11 @@ export type TProps = Omit<JSX.IntrinsicElements["source"], "srcSet"> & {
 }
 
 export function Source (props: TProps): JSX.Element {
-  const { srcSet, ...other } = props
+  const { srcSet, src, ...other } = props
 
   const { deliveryAddress } = useImageEngineContext()
   
   return (
-    <source srcSet={generateSrcSetString(srcSet, deliveryAddress)} {...other} />
+    <source srcSet={generateSrcSetString(srcSet, deliveryAddress, src)} {...other} />
   )
 }

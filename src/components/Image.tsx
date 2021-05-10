@@ -1,5 +1,5 @@
 import { useImageEngineContext } from "../context"
-import { constructUrl, generateSrcSetString } from "../utils"
+import { constructUrl, generateSrcSetString, buildUrlFromDeliveryAddress } from "../utils"
 
 const ALLOWED_INPUT_EXTENSIONS = [
   "png",
@@ -42,8 +42,9 @@ export type TDirectives = {
     | "mp4"
     | "jxr"
     | "avif"
+    | ""
   // Define desired fit method.
-  fitMethod?: "stretch" | "box" | "letterbox" | "cropbox"
+  fitMethod?: "stretch" | "box" | "letterbox" | "cropbox" | ""
   // Don't apply any optimizations to the origin image.
   noOptimization?: true
   // Adjust sharpness.
@@ -77,7 +78,7 @@ export function Image(props: TProps): JSX.Element {
   }
 
   const { deliveryAddress } = useImageEngineContext()
-  const imageUrl = deliveryAddress + src
+  const imageUrl = buildUrlFromDeliveryAddress(deliveryAddress, src);
   const [imageExtension] = src.split(".").slice(-1)
 
   if (!ALLOWED_INPUT_EXTENSIONS.includes(imageExtension)) {
@@ -92,7 +93,7 @@ export function Image(props: TProps): JSX.Element {
       src={
         directives ? constructUrl(imageUrl, directives) : imageUrl
       }
-      srcSet={srcSet && generateSrcSetString(srcSet, deliveryAddress)}
+      srcSet={srcSet && generateSrcSetString(srcSet, deliveryAddress, imageUrl)}
       {...other}
     />
   )
