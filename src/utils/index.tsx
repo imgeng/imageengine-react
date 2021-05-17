@@ -17,18 +17,23 @@ const DIRECTIVE_MAPPING: { [key: string]: string } = {
 }
 
 export function constructUrl(src: string, directives: TDirectives): string {
-  const params = Object.entries(directives).reduce((result, [key, value]) => {
-    if (DIRECTIVE_MAPPING[key]) {
-      return result + `/${DIRECTIVE_MAPPING[key]}_${value}`
-    }
+  const params = Object.entries(directives)
+    // Filter out null, undefined and empty string values.
+    .filter(([, value]) => value === 0 ? true : Boolean(value))
+    .reduce((result, [key, value]) => {
+      if (DIRECTIVE_MAPPING[key]) {
+        return result + `/${DIRECTIVE_MAPPING[key]}_${value}`
+      }
 
-    console.warn(
-      `Directive '${key}' isn't recognized and won't be applied to the image.`
-    )
-    return result
-  }, "")
+      console.warn(
+        `Directive '${key}' isn't recognized and won't be applied to the image.`
+      )
+      return result
+    }, "")
 
-  return `${src}?imgeng=${params}`
+  return params === ""
+    ? src
+    : `${src}?imgeng=${params}`
 }
 
 export function generateSrcSetString(srcSet: TSrcSet, deliveryAddress: string): string {
