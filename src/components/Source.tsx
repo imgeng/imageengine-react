@@ -1,16 +1,13 @@
-import { TSrcSet } from './Image'
 import { useImageEngineContext } from '../context'
 import { generateSrcSetString  } from '../utils'
 
-export type TProps = Omit<JSX.IntrinsicElements["source"], "srcSet"> & {
-  srcSet: TSrcSet
-}
+import { TSourceProps } from '../types'
 
-export function Source (props: TProps): JSX.Element {
+export function Source(props: TSourceProps): JSX.Element {
   const { srcSet, ...other } = props
 
   const { deliveryAddress } = useImageEngineContext()
-  
+
   return (
     <source srcSet={generateSrcSetString(srcSet, deliveryAddress)} {...other} />
   )

@@ -1,4 +1,4 @@
-import { TDirectives, TSrcSet } from "../components/Image"
+import { TDirectives, TSrcSet } from "../types"
 
 const DIRECTIVE_MAPPING: { [key: string]: string } = {
   width: "w",
