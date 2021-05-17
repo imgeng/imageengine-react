@@ -72,7 +72,7 @@ directives?: {
     | "jpg"
     | "bmp"
     | "webp"
-    | "jpeg2000"
+    | "jp2"
     | "svg"
     | "mp4"
     | "jxr"

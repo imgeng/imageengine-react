@@ -7,7 +7,7 @@ const ALLOWED_INPUT_EXTENSIONS = [
   "jpg",
   "bmp",
   "webp",
-  "jpeg2000",
+  "jp2",
   "svg",
   "tif",
 ]
@@ -37,7 +37,7 @@ export type TDirectives = {
     | "jpg"
     | "bmp"
     | "webp"
-    | "jpeg2000"
+    | "jp2"
     | "svg"
     | "mp4"
     | "jxr"
