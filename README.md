@@ -10,7 +10,7 @@ The bundle includes three major components:
 * `<Picture>`
 * `<Source>`
 
-The only prerequisite to start using them is placing `ImageEngineProvider` somewhere above in the DOM tree. The provider requires one prop to be defined: `deliveryAddress`, which should be set to your [ImageEngine Delivery Address](https://docs.imageengine.io/docs/implementation/origin):
+The only prerequisite to start using them is placing `ImageEngineProvider` somewhere above in the DOM tree with the `deliveryAddress` prop set to your [ImageEngine Delivery Address](https://docs.imageengine.io/docs/implementation/origin) (local server URL, for example `http://localhost:9009`, will work as well):
 
 ```jsx
 import { ImageEngineProvider } from "@imageengine/react"
@@ -44,6 +44,8 @@ function ShoppingCart () {
   )
 }
 ```
+
+[Demo app on CodeSandbox](https://codesandbox.io/s/3lz2y?file=/src/App.tsx)
 
 ## Component props reference
 
