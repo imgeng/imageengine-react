@@ -1,6 +1,6 @@
 {
   "name": "@imageengine/react",
-  "version": "0.9.1",
+  "version": "0.9.2",
   "description": "React components for seamless integration with ImageEngine",
   "main": "build/index.js",
   "scripts": {
