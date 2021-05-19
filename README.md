@@ -10,7 +10,7 @@ The bundle includes three major components:
 * `<Picture>`
 * `<Source>`
 
-The only prerequisite to start using them is placing `ImageEngineProvider` somewhere above in the DOM tree with the `deliveryAddress` prop set to your [ImageEngine Delivery Address](https://docs.imageengine.io/docs/implementation/origin) (local server URL, for example `http://localhost:9009`, will work as well):
+The only prerequisite to start using them is placing `ImageEngineProvider` somewhere above in the DOM tree with the `deliveryAddress` prop set to your [ImageEngine Delivery Address](https://support.imageengine.io/hc/en-us/articles/360059238371-Quick-Start) (local server URL, for example `http://localhost:9009`, will work as well):
 
 ```jsx
 import { ImageEngineProvider } from "@imageengine/react"
@@ -51,11 +51,13 @@ function ShoppingCart () {
 
 ### Image
 `src` - Relative path to the image:
+
 ```ts
 src: string
 ```
 
 `directives` - ImageEngine directives:
+
 ```ts
 directives?: {
   // Define desired width.
@@ -101,6 +103,7 @@ directives?: {
 ```
 
 `srcSet` - List of image variations for the image source set:
+
 ```ts
 srcSet?: [{
   // Relative path to the image.
@@ -115,6 +118,7 @@ srcSet?: [{
 
 ### Source
 `srcSet` - List of image variations for the image source set:
+
 ```ts
 srcSet?: [{
   // Relative path to the image.
