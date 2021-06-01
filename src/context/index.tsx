@@ -1,17 +1,15 @@
 import { createContext, useContext, ReactNode } from "react"
 
-const ImageEngineContext = createContext({ deliveryAddress: "" })
+import { TImageEngineProvider } from '../types'
 
-type TProps = {
-  children: ReactNode
-  deliveryAddress: string
-}
+const ImageEngineContext = createContext<Omit<TImageEngineProvider, 'children'>>({ deliveryAddress: "" })
 
-function ImageEngineProvider({ children, deliveryAddress }: TProps): JSX.Element {
+function ImageEngineProvider({ children, deliveryAddress, stripFromSrc }: TImageEngineProvider): JSX.Element {
   return (
     <ImageEngineContext.Provider
       value={{
-        deliveryAddress: deliveryAddress.endsWith('/') ? deliveryAddress.slice(0, -1) : deliveryAddress
+        deliveryAddress: deliveryAddress.endsWith('/') ? deliveryAddress.slice(0, -1) : deliveryAddress,
+        stripFromSrc,
       }}
     >
       {children}
@@ -19,12 +17,13 @@ function ImageEngineProvider({ children, deliveryAddress }: TProps): JSX.Element
   )
 }
 
-function useImageEngineContext(): { deliveryAddress: string } {
+function useImageEngineContext(): Omit<TImageEngineProvider, 'children'> {
   const ctx = useContext(ImageEngineContext)
 
   if (ctx.deliveryAddress === "") {
     throw new Error(
-      "Please ensure that you've defined <ImageEngineProvider deliveryAddress='...'> somewhere above <Image> components in the DOM tree."
+      "Please ensure that you've defined <ImageEngineProvider deliveryAddress='...'> " +
+      "somewhere above <Image> / <Source> components in the DOM tree."
     )
   }
 

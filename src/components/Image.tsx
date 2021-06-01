@@ -20,8 +20,8 @@ export function Image(props: TImageProps): JSX.Element {
     throw new Error(`Please ensure that the image component has an 'src' prop.`)
   }
 
-  const { deliveryAddress } = useImageEngineContext()
-  const imageUrl = deliveryAddress + src
+  const { deliveryAddress, stripFromSrc } = useImageEngineContext()
+  const imageUrl = deliveryAddress + (stripFromSrc ? src.replace(stripFromSrc, '') : src)
   const [imageExtension] = src.split(".").slice(-1)
 
   if (!ALLOWED_INPUT_EXTENSIONS.includes(imageExtension)) {

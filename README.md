@@ -4,20 +4,25 @@ Hassle-free way to deliver optimized responsive images in your React application
 
 ## Quick start
 
-The bundle includes three major components:
+The package includes four components:
 
-* `<Image>`
-* `<Picture>`
-* `<Source>`
+* `ImageEngineProvider`
+* `Image`
+* `Picture`
+* `Source`
 
-The only prerequisite to start using them is placing `ImageEngineProvider` somewhere above in the DOM tree with the `deliveryAddress` prop set to your [ImageEngine Delivery Address](https://support.imageengine.io/hc/en-us/articles/360059238371-Quick-Start) (local server URL, for example `http://localhost:9009`, will work as well):
+To start using provided image tags in your application, place `ImageEngineProvider` somewhere above them in the DOM tree with the `deliveryAddress` prop set to your [ImageEngine Delivery Address](https://support.imageengine.io/hc/en-us/articles/360059238371-Quick-Start):
 
 ```jsx
 import { ImageEngineProvider } from "@imageengine/react"
 
 function App () {
   return (
-    <ImageEngineProvider deliveryAddress="https://blazing-fast-pics.cdn.imgeng.in">
+    <ImageEngineProvider
+      deliveryAddress="https://blazing-fast-pics.cdn.imgeng.in"
+      // or, for local development:
+      // deliveryAddress="http://localhost:9009"
+    >
       <ShoppingCart />
       ...
     </ImageEngineProvider>
@@ -48,6 +53,20 @@ function ShoppingCart () {
 [Demo app on CodeSandbox](https://codesandbox.io/s/3lz2y?file=/src/App.tsx)
 
 ## Component props reference
+
+### ImageEngineProvider
+`deliveryAddress` - [ImageEngine Delivery Address](https://support.imageengine.io/hc/en-us/articles/360059238371-Quick-Start):
+
+```ts
+deliveryAddress: string
+```
+
+`stripFromSrc` - Strip away a portion of a source string in all ImageEngine's components. Particularly useful if your images are coming from a headless CMS and you need to erase something in received URL path (origin, for example):
+
+```ts
+stripFromSrc?: string
+```
+
 
 ### Image
 `src` - Relative path to the image:

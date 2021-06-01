@@ -1,4 +1,4 @@
-import { ReactElement } from "react"
+import { ReactElement, ReactNode } from "react"
 
 export type TSrcSet = Array<{
   // Relative path to the image.
@@ -49,6 +49,12 @@ export interface TDirectives {
   inline?: true
   // Keep EXIF data.
   keepMeta?: true
+}
+
+export type TImageEngineProvider = {
+  children: ReactNode
+  deliveryAddress: string
+  stripFromSrc?: string
 }
 
 export type TImageProps = Omit<JSX.IntrinsicElements["img"], "src" | "srcSet"> & {
