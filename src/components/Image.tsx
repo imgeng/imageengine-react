@@ -6,6 +6,7 @@ const ALLOWED_INPUT_EXTENSIONS = [
   "png",
   "gif",
   "jpg",
+  "jpeg",
   "bmp",
   "webp",
   "jp2",
@@ -24,7 +25,7 @@ export function Image(props: TImageProps): JSX.Element {
   const imageUrl = deliveryAddress + (stripFromSrc ? src.replace(stripFromSrc, '') : src)
   const [imageExtension] = src.split(".").slice(-1)
 
-  if (!ALLOWED_INPUT_EXTENSIONS.includes(imageExtension)) {
+  if (!ALLOWED_INPUT_EXTENSIONS.includes(imageExtension.toLowerCase())) {
     console.warn(
       `The following image's extension doesn't match any of the allowed types and won't be optimized: ${src}.`,
       `List of supported extensions: ${ALLOWED_INPUT_EXTENSIONS.join(", ")}.`
