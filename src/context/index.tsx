@@ -2,7 +2,7 @@ import { createContext, useContext, ReactNode } from "react"
 
 import { TImageEngineProvider } from '../types'
 
-export const ImageEngineContext = createContext<Omit<TImageEngineProvider, 'children'>>({ deliveryAddress: "" })
+const ImageEngineContext = createContext<Omit<TImageEngineProvider, 'children'>>({ deliveryAddress: "" })
 
 function ImageEngineProvider({ children, deliveryAddress, stripFromSrc }: TImageEngineProvider): JSX.Element {
   return (
