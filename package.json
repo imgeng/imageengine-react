@@ -29,6 +29,6 @@
   },
   "homepage": "https://github.com/imgeng/imageengine-react#readme",
   "dependencies": {
-    "@imageengine/imageengine-helpers": "^0.0.5"
+    "@imageengine/imageengine-helpers": "^0.0.6"
   }
 }

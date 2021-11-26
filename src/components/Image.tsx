@@ -8,6 +8,7 @@ const ALLOWED_INPUT_EXTENSIONS: IEFormat[] = [
   "png",
   "gif",
   "jpg",
+  "jpeg",
   "bmp",
   "webp",
   "jp2",
