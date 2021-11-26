@@ -2,7 +2,7 @@ import { createContext, useContext, ReactNode } from "react"
 
 import { TImageEngineProvider } from '../types'
 
-const ImageEngineContext = createContext<Omit<TImageEngineProvider, 'children'>>({ deliveryAddress: "" })
+export const ImageEngineContext = createContext<Omit<TImageEngineProvider, 'children'>>({ deliveryAddress: "" })
 
 function ImageEngineProvider({ children, deliveryAddress, stripFromSrc }: TImageEngineProvider): JSX.Element {
   return (
@@ -30,4 +30,4 @@ function useImageEngineContext(): Omit<TImageEngineProvider, 'children'> {
   return ctx
 }
 
-export { ImageEngineProvider, useImageEngineContext }
+export { ImageEngineProvider, useImageEngineContext, ImageEngineContext }
