@@ -30,4 +30,4 @@ function useImageEngineContext(): Omit<TImageEngineProvider, 'children'> {
   return ctx
 }
 
-export { ImageEngineProvider, useImageEngineContext }
+export { ImageEngineProvider, useImageEngineContext, ImageEngineContext }

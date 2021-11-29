@@ -2,7 +2,9 @@ import { useImageEngineContext } from "../context"
 import { constructUrl, generateSrcSetString } from "../utils"
 import { TImageProps } from "../types"
 
-const ALLOWED_INPUT_EXTENSIONS = [
+import { IEFormat, IEFit, IEDirectives } from "@imageengine/imageengine-helpers";
+
+const ALLOWED_INPUT_EXTENSIONS: IEFormat[] = [
   "png",
   "gif",
   "jpg",

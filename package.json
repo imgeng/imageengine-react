@@ -1,6 +1,6 @@
 {
   "name": "@imageengine/react",
-  "version": "0.10.6",
+  "version": "0.11.0",
   "description": "React components for seamless integration with ImageEngine",
   "main": "build/index.js",
   "scripts": {
@@ -27,5 +27,8 @@
   "bugs": {
     "url": "https://github.com/imgeng/imageengine-react/issues"
   },
-  "homepage": "https://github.com/imgeng/imageengine-react#readme"
+  "homepage": "https://github.com/imgeng/imageengine-react#readme",
+  "dependencies": {
+    "@imageengine/imageengine-helpers": "^0.0.6"
+  }
 }
