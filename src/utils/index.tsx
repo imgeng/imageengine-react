@@ -2,7 +2,7 @@ import { TSrcSet } from "../types"
 import { IEDirectives, build_IE_url } from "@imageengine/imageengine-helpers";
 
 export function constructUrl(src: string, directives: IEDirectives): string {
-  return build_IE_url(string, directives, true);
+  return build_IE_url(src, directives, true);
 }
 
 export function generateSrcSetString(srcSet: TSrcSet, deliveryAddress: string): string {
