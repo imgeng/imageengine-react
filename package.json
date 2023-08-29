@@ -1,6 +1,6 @@
 {
-  "name": "@vinodk007/imageengine-package-build-and-publish",
-  "version": "1.0.0",
+  "name": "@imageengine/react",
+  "version": "0.12.0",
   "description": "React components for seamless integration with ImageEngine",
   "main": "build/index.js",
   "scripts": {
