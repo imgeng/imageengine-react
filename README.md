@@ -99,6 +99,8 @@ directives?: {
     | "svg"
     | "mp4"
     | "jxr"
+    | "avif"
+    | "jxl"
   // Define desired fit method.
   fitMethod?: "stretch" | "box" | "letterbox" | "cropbox"
   // Don't apply any optimizations to the origin image.
@@ -118,6 +120,8 @@ directives?: {
   inline?: true
   // Keep EXIF data.
   keepMeta?: true
+  force_download?: true;
+  max_device_pixel_ratio: 2.1;   // 1-4 float
 }
 ```
 

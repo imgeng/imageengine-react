@@ -13,6 +13,10 @@ const ALLOWED_INPUT_EXTENSIONS: (IEFormat | 'tif')[] = [
   "webp",
   "jp2",
   "svg",
+  "mp4",
+  "jxr",
+  "avif",
+  "jxl",
   "tif",
 ]
 
