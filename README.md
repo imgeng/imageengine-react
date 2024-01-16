@@ -50,7 +50,7 @@ function ShoppingCart () {
 }
 ```
 
-[Demo app on CodeSandbox](https://codesandbox.io/s/3lz2y?file=/src/App.tsx)
+[Demo app on CodeSandbox](https://codesandbox.io/p/sandbox/imageenginereactdemo-pjfp7z)
 
 ## Component props reference
 
@@ -121,7 +121,7 @@ directives?: {
   // Keep EXIF data.
   keepMeta?: true
   force_download?: true;
-  max_device_pixel_ratio: 2.1;   // 1-4 float
+  max_device_pixel_ratio?: 2.1;   // 1-4 float
 }
 ```
 
