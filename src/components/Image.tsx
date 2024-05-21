@@ -29,7 +29,7 @@ export function Image(props: TImageProps): JSX.Element {
 
   const { deliveryAddress, stripFromSrc } = useImageEngineContext()
   const imageUrl = deliveryAddress + (stripFromSrc ? src.replace(stripFromSrc, '') : src)
-  const [imageExtension] = src.split(".").slice(-1)
+  const [imageExtension] = new URL(imageUrl).pathname.split(".").slice(-1)
 
   if (!ALLOWED_INPUT_EXTENSIONS.includes(imageExtension.toLowerCase() as IEFormat)) {
     console.warn(
