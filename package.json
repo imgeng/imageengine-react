@@ -9,7 +9,7 @@
   },
   "devDependencies": {
     "@types/react": "^18.2.47",
-    "typescript": "^5.2.2"
+    "typescript": "^6.0.0"
   },
   "peerDependencies": {
     "react": "^17.0.2 || ^18.0.0"
